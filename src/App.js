@@ -1,13 +1,16 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Nav from "./pages/Nav";
+import Nav from "./compononents/Nav";
+import SearchLibrary from "./compononents/SearchLibrary";
 
 function App() {
   return (
     <Router>
       <>
+      <Nav />
+      <SearchLibrary />
         <Routes>
-          <Route path="/" element={<Nav />}></Route>
+          <Route path=":id"></Route>
         </Routes>
       </>
     </Router>
