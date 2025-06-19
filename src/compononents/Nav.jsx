@@ -19,7 +19,8 @@ const Nav = () => {
 
   function onSearchKeyPress(key) {
     if(key === 'Enter') {
-      onSearch()
+      onSearch();
+      console.log(key)
     }
   }
 
@@ -35,7 +36,7 @@ useEffect(() => {
             <Link to="/" className="nav__logo--link">
               <img
                 src={MusicLogo}
-                alt=""
+                alt="Logo"
                 className="nav__logo--img"
               />
             </Link>
