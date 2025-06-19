@@ -1,32 +1,43 @@
-import React, { useState ,useEffect } from "react";
-import MusicLogo from "../assets/Music-Logo.png"
+import React, { useState, useEffect } from "react";
+import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-
+import axios from "axios";
 
 const Nav = () => {
-  const [ searchId, setSearchId] = useState([])
+  const [searchId, setSearchId] = useState("");
 
   function onSearch() {
     getData(searchId);
   }
 
   async function getData(searchTerm) {
-    const { data } = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`)
-    console.log(data)
-  }
-
-  function onSearchKeyPress(key) {
-    if(key === 'Enter') {
-      onSearch();
-      console.log(key)
+    if (!searchTerm || searchTerm.trim() === "") {
+      console.warn("No search term provided");
+      return;
+    }
+    try {
+      const { data } = await axios.get(
+        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(
+          searchTerm
+        )}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
+      );
+      console.log(data);
+    } catch (error) {
+      console.error("API call failed:", error);
     }
   }
 
-useEffect(() => {
-  getData();
-}, [])
+  function onSearchKeyPress(key) {
+    if (key === "Enter") {
+      onSearch();
+    }
+  }
+
+  //Fetch Data on Initial Render with default search term
+  useEffect(() => {
+    getData("radiohead");
+  }, []);
 
   return (
     <>
@@ -34,11 +45,7 @@ useEffect(() => {
         <div className="nav__row">
           <div className="nav__logo">
             <Link to="/" className="nav__logo--link">
-              <img
-                src={MusicLogo}
-                alt="Logo"
-                className="nav__logo--img"
-              />
+              <img src={MusicLogo} alt="Logo" className="nav__logo--img" />
             </Link>
           </div>
           <div className="nav__links">
@@ -49,9 +56,9 @@ useEffect(() => {
               Search library
             </Link>
             <Link to="https://badgerbadgerbadger.com/" target="_blank">
-            <button href="" className="nav__btn">
-              Connect
-            </button>
+              <button href="" className="nav__btn">
+                Connect
+              </button>
             </Link>
           </div>
         </div>
@@ -67,7 +74,7 @@ useEffect(() => {
               onKeyUp={(event) => onSearchKeyPress(event.key)}
             />
             <div className="search__icon--wrapper">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass"/>
+              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
             </div>
           </div>
         </div>
