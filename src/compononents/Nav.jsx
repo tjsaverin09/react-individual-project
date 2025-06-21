@@ -18,9 +18,7 @@ const Nav = () => {
     }
     try {
       const { data } = await axios.get(
-        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(
-          searchTerm
-        )}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(searchTerm)}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
       console.log(data);
     } catch (error) {
@@ -36,7 +34,7 @@ const Nav = () => {
 
   //Fetch Data on Initial Render with default search term
   useEffect(() => {
-    getData("radiohead");
+    getData();
   }, []);
 
   return (
