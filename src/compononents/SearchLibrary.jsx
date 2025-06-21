@@ -12,8 +12,6 @@ const SearchLibrary = () => {
     console.log('Album data:', data);
     setAlbums(data.results.albummatches.album);
     setLoading(false);
-    // error in this code:
-    setAlbumCover(data.results.albummatches.album.image.length > 2 ? album.image[2]["#text"] : "https://lastfm.freetls.fastly.net/i/u/174s/710d5f1abe58c7a83492a86d0235d2b9.png")
   }
 
   useEffect(() => {
@@ -44,12 +42,12 @@ const SearchLibrary = () => {
           <div className="music__loading">
             <p className="result__para">How are we feeling today?</p>
             <FontAwesomeIcon icon="fas fa-spinner" />
-          </div> </> : albums.map((album) => (
+          </div> </> : albums.slice(0, 10).map((album) => (
             <div className="music__card">
             <figure className="music__img--wrapper">
             <img
-              src={albumCover}
-              alt="{album.name} by {album.artist}"
+              src={album.image[2]["#text"]}
+              alt={`${album.name} by ${album.artist}`}
               className="album__cover"
             />
           </figure>
