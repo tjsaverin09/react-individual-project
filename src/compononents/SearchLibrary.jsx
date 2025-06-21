@@ -5,18 +5,19 @@ import axios from 'axios';
 const SearchLibrary = () => {
   const [albums, setAlbums] = useState([])
   const [loading, setLoading] = useState()
+  const [albumCover, setAlbumCover] = useState([])
 
-  async function displayAlbumData() {
-    const { data } = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=man-on-the-moon&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`)
+  async function displayAlbumData(searchTerm) {
+    const { data } = await axios.get(`https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`)
     console.log('Album data:', data);
-    setAlbums(data);
+    setAlbums(data.results.albummatches.album);
     setLoading(false);
-    console.log(typeof albums);
-    console.log(Array.isArray(albums));
+    // error in this code:
+    setAlbumCover(data.results.albummatches.album.image.length > 2 ? album.image[2]["#text"] : "https://lastfm.freetls.fastly.net/i/u/174s/710d5f1abe58c7a83492a86d0235d2b9.png")
   }
 
   useEffect(() => {
-    displayAlbumData();
+    displayAlbumData("mf doom");
   }, [])
 
   return (
@@ -47,18 +48,15 @@ const SearchLibrary = () => {
             <div className="music__card">
             <figure className="music__img--wrapper">
             <img
-              src="${imageUrl}"
-              alt="${album.name} by ${album.artist}"
+              src={albumCover}
+              alt="{album.name} by {album.artist}"
               className="album__cover"
             />
           </figure>
-          <div className="album__title">Album: <span className="album">${album.name}</span></div>
+          <div className="album__title">Album: <span className="album">{album.name}</span></div>
           <div className="artist__name">
-            Artist: <span className="artist">${album.artist}</span>
-          </div></div>))
-          
-        
-              
+            Artist: <span className="artist">{album.artist}</span>
+          </div></div>))             
             }
           
         </div>
