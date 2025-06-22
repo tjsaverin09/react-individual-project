@@ -20,7 +20,7 @@ const Nav = () => {
       const { data } = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(searchTerm)}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
-      console.log(data);
+      console.log("Search results:", data);
     } catch (error) {
       console.error("API call failed:", error);
     }
@@ -72,7 +72,7 @@ const Nav = () => {
               onKeyUp={(event) => onSearchKeyPress(event.key)}
             />
             <div className="search__icon--wrapper">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" onClick={(event) => setSearchId(event.target.value)}/>
             </div>
           </div>
         </div>

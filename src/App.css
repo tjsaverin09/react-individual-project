@@ -183,7 +183,7 @@ nav {
 
 .result__para {
     font-family: gluten;
-    font-size: 20px;
+    font-size: 24px;
     letter-spacing: 0.5px;
 }
 
@@ -223,6 +223,20 @@ nav {
 .fa-spinner {
     font-size: 60px;
     animation: rotate 600ms infinite linear;
+}
+
+.fa-record-vinyl, 
+.fa-music,
+.fa-headphones {
+    font-size: 80px;
+    color:red;
+    margin-top: 20px;
+}
+
+.result__icons {
+    display: flex;
+    justify-content: space-between;
+   
 }
 
 @keyframes rotate {
