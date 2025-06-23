@@ -7,6 +7,7 @@ import axios from "axios";
 const Nav = () => {
   const [searchId, setSearchId] = useState("");
 
+  //this function 
   function onSearch() {
     getData(searchId);
   }
@@ -20,12 +21,13 @@ const Nav = () => {
       const { data } = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(searchTerm)}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
-      console.log("Search results:", data);
+      console.log("Search results:", data); 
     } catch (error) {
       console.error("API call failed:", error);
     }
   }
 
+  // This function lets you search when you press the enter key 
   function onSearchKeyPress(key) {
     if (key === "Enter") {
       onSearch();
