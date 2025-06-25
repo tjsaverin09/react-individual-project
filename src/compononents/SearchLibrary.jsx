@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
+import Nav from "./Nav";
 
 const SearchLibrary = () => {
   const [albums, setAlbums] = useState([]);
@@ -26,10 +27,12 @@ const SearchLibrary = () => {
   }
 
   useEffect(() => {
-    displayAlbumData();
+    displayAlbumData('');
   }, []);
 
   return (
+    <>
+    <Nav />
     <section id="results">
       <div className="container">
         <div className="row">
@@ -84,6 +87,7 @@ const SearchLibrary = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

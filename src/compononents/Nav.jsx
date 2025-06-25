@@ -3,9 +3,13 @@ import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { SearchLibrary } from "./SearchLibrary";
+import { useParams } from "react-router-dom";
 
 const Nav = () => {
-  const [searchId, setSearchId] = useState("");
+  const params = useParams();
+  console.log(params)
+  const [searchId, setSearchId] = useState([])
 
   //this function 
   function onSearch() {
