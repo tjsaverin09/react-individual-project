@@ -14,7 +14,7 @@ const [searchId, setSearchId] = useState("");
       <>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="" element={<AlbumInfo />}></Route>
+          <Route path=":name" element={<AlbumInfo />}></Route>
         </Routes>
       </>
     </Router>

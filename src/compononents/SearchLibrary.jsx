@@ -27,7 +27,7 @@ const SearchLibrary = () => {
   }
 
   useEffect(() => {
-    displayAlbumData('');
+    displayAlbumData('df');
   }, []);
 
   return (
