@@ -306,6 +306,17 @@ nav {
 
 /*
 
+Album Info
+
+*/
+
+.album__info {
+    background-color:#242424;
+    min-height: 100vh;
+}
+
+/*
+
 SMALL PHONES
 
 */

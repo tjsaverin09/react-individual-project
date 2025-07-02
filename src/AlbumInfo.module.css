@@ -1,13 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-    color: #243e63;
-}
+
 
 .container {
     padding: 40px 0 80px 0;
+    background-color: purple;
 }
 
 .row {
@@ -16,3 +11,11 @@
     margin: 0 auto;
 }
 
+.album__info {
+    background-color: #242424;
+    min-height: 100vh;
+}
+
+.fawk {
+    color:red;
+}
