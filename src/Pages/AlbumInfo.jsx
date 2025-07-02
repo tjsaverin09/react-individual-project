@@ -33,11 +33,19 @@ const AlbumInfo = () => {
               {dataReady
                 ? albumInfo.slice(0, 1).map((album) => (
                     <div className="album__details">
-                      <figure className="album__cover--wrapper">
-                        <img src={album.image[2]["#text"]} alt="" />
-                      </figure>
                       <div className="album__info">
-                        <p className="album__name">Album title:{`${album.name}`}</p>
+                        <figure className="album__cover--wrapper">
+                          <img src={album.image} alt="" />
+                        </figure>
+                        <p className="album__artist">
+                          Artist:{`${album.artist}`}
+                        </p>
+                        <p className="album__name">
+                          Title:{`${album.name}`}
+                        </p>
+                        <p className="album__bio">
+                          Album bio:{`${album.wiki}`}
+                        </p>
                       </div>
                     </div>
                   ))
