@@ -35,7 +35,8 @@ const AlbumInfo = () => {
                     <div className="album__details">
                       <div className="album__info">
                         <figure className="album__cover--wrapper">
-                          <img src={album.image} alt="" />
+                          album cover:
+                          <img src={album.image} alt={`${album.name} by ${album.artist}`}/>
                         </figure>
                         <p className="album__artist">
                           Artist:{`${album.artist}`}
