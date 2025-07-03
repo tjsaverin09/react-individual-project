@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { SearchLibrary } from "./SearchLibrary";
 import { useParams } from "react-router-dom";
+ 
+
 
 const Nav = () => {
   const params = useParams();
@@ -16,7 +18,7 @@ const Nav = () => {
     getData(searchId);
   }
 
-  async function getData(searchTerm) {
+ async function getData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
       console.warn("No search term provided");
       return;

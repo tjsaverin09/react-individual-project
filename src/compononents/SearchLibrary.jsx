@@ -2,13 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Nav from "./Nav";
+import { useNavigate } from "react-router-dom"
 
-const SearchLibrary = () => {
-  const [albums, setAlbums] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  const [dataDisplayed, setDataDisplayed] = useState(false);
-
-  async function displayAlbumData(searchTerm) {
+ async function displayAlbumData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
       console.warn("no search term provided");
       return;
@@ -18,16 +14,25 @@ const SearchLibrary = () => {
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
       console.log("Album data:", data);
-      setAlbums(data.results.albummatches.album);
+      
       // setLoading(false);
-      setDataDisplayed(true);
+     
     } catch (error) {
       console.error("API call failed", error);
     }
   }
 
+const SearchLibrary = () => {
+  let navigate = useNavigate();
+  const [albums, setAlbums] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  const [dataDisplayed, setDataDisplayed] = useState(false);
+
+ setAlbums(data.results.albummatches.album);
+ setDataDisplayed(true);
+ 
   useEffect(() => {
-    displayAlbumData('df');
+    displayAlbumData('');
   }, []);
 
   return (
@@ -66,7 +71,7 @@ const SearchLibrary = () => {
               </>
             ) : (
               albums.slice(0, 15).map((album) => (
-                <div className="music__card">
+                <div className="music__card" onClick={() => navigate(`${album.name}`)}>
                   <figure className="music__img--wrapper">
                     <img
                       src={album.image[2]["#text"]}

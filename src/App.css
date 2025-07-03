@@ -270,6 +270,7 @@ nav {
     padding: 16px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    cursor: pointer;
 }
 
 .music__card:hover {
@@ -306,14 +307,21 @@ nav {
 
 /*
 
-Album Info
+Album Spotlight
 
 */
 
-.album__info {
+#album__spotlight {
     background-color:#242424;
     min-height: 100vh;
 }
+
+.album__details {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
 
 /*
 

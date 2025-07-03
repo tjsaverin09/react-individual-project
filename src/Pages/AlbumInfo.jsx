@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Nav from "../compononents/Nav";
-import styles from "../AlbumInfo.module.css";
 
 const AlbumInfo = () => {
   const { name } = useParams();
-  const [albumInfo, setAlbumInfo] = useState([]);
-  const [dataReady, setDataReady] = useState("");
+  const [albumInfo, setAlbumInfo] = useState(null);
+  const [dataReady, setDataReady] = useState(false);
 
   async function fetchAlbumInfo() {
     const { data } = await axios.get(
-      `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=Prince&album=1999&format=json`
+      `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=Prince&album=${encodeURIComponent(
+        name
+      )}&format=json`
     );
     console.log(data);
-    setAlbumInfo(data.album.tracks.track);
+    setAlbumInfo(data.album);
     setDataReady(true);
   }
 
@@ -25,33 +26,35 @@ const AlbumInfo = () => {
   return (
     <>
       <Nav />
-      <div classname={styles}>
-        <div className="album__info">
-          <div className="container">
-            <div className="row">
-              <div>{name}</div>
-              {dataReady
-                ? albumInfo.slice(0, 1).map((album) => (
-                    <div className="album__details">
-                      <div className="album__info">
-                        <figure className="album__cover--wrapper">
-                          album cover:
-                          <img src={album.image} alt={`${album.name} by ${album.artist}`}/>
-                        </figure>
-                        <p className="album__artist">
-                          Artist:{`${album.artist}`}
-                        </p>
-                        <p className="album__name">
-                          Title:{`${album.name}`}
-                        </p>
-                        <p className="album__bio">
-                          Album bio:{`${album.wiki}`}
-                        </p>
-                      </div>
-                    </div>
-                  ))
-                : "hi mom"}
-            </div>
+      <div id="album__spotlight">
+        <div className="container">
+          <div className="row">
+            
+            {albumInfo && dataReady ? (
+              <div className="album__details">
+                <div className="album__cover">
+                  <figure className="album__image--wrapper">
+                    <img
+                      src={albumInfo.image[2]["#text"]}
+                      alt={`${albumInfo.name} by ${albumInfo.artist}`}
+                      className="album__image"
+                    />
+                  </figure>
+                </div>
+                <div className="album__info">
+                  <h2 className="album__title">{name}</h2>
+                  <p className="album__artist">
+                    Artist:{`${albumInfo.artist}`}
+                  </p>
+                  <p className="album__name">Title:{`${albumInfo.name}`}</p>
+                  <p className="album__bio">
+                    Album bio:{`${albumInfo.wiki.summary}`}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              "hi mom"
+            )}
           </div>
         </div>
       </div>
