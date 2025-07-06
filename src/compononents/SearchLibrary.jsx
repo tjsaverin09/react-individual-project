@@ -1,10 +1,29 @@
 import React, { useState, useEffect } from "react";
+import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Nav from "./Nav";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams, Link } from "react-router-dom";
 
- async function displayAlbumData(searchTerm) {
+
+
+
+const SearchLibrary = () => {
+  let navigate = useNavigate();
+  const [albums, setAlbums] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  const [dataDisplayed, setDataDisplayed] = useState(false);
+
+  const params = useParams();
+  console.log(params)
+  const [searchId, setSearchId] = useState([])
+
+  //this function 
+  function onSearch() {
+    displayAlbumData(searchId);
+  }
+
+  async function displayAlbumData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
       console.warn("no search term provided");
       return;
@@ -14,30 +33,66 @@ import { useNavigate } from "react-router-dom"
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
       console.log("Album data:", data);
-      
+      setAlbums(data.results.albummatches.album);
       // setLoading(false);
-     
+      setDataDisplayed(true);
     } catch (error) {
       console.error("API call failed", error);
     }
   }
 
-const SearchLibrary = () => {
-  let navigate = useNavigate();
-  const [albums, setAlbums] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  const [dataDisplayed, setDataDisplayed] = useState(false);
+    // This function lets you search when you press the enter key 
+  function onSearchKeyPress(key) {
+    if (key === "Enter") {
+      onSearch();
+    }
+  }
 
- setAlbums(data.results.albummatches.album);
- setDataDisplayed(true);
- 
+  //Fetch Data on Initial Render with default search term
   useEffect(() => {
     displayAlbumData('');
   }, []);
 
   return (
     <>
-    <Nav />
+    <nav>
+        <div className="nav__row">
+          <div className="nav__logo">
+            <Link to="/" className="nav__logo--link">
+              <img src={MusicLogo} alt="Logo" className="nav__logo--img" />
+            </Link>
+          </div>
+          <div className="nav__links">
+            <Link to="/" className="nav__link">
+              Home
+            </Link>
+            <Link to="/" className="nav__link">
+              Search library
+            </Link>
+            <Link to="https://badgerbadgerbadger.com/" target="_blank">
+              <button href="" className="nav__btn">
+                Connect
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div className="search__menu">
+          <h1 className="search__title">Find Your Jam</h1>
+          <div className="search__input--wrapper">
+            <input
+              type="text"
+              placeholder="Look up Artist or Album..."
+              className="search__input"
+              value={searchId}
+              onChange={(event) => setSearchId(event.target.value)}
+              onKeyUp={(event) => onSearchKeyPress(event.key)}
+            />
+            <div className="search__icon--wrapper">
+              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" onClick={(event) => setSearchId(event.target.value)}/>
+            </div>
+          </div>
+        </div>
+      </nav>
     <section id="results">
       <div className="container">
         <div className="row">

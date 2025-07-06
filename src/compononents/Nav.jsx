@@ -10,13 +10,11 @@ import { useParams } from "react-router-dom";
 
 const Nav = () => {
   const params = useParams();
-  console.log(params)
-  const [searchId, setSearchId] = useState([])
+    console.log(params)
+    const [searchId, setSearchId] = useState([])
 
-  //this function 
-  function onSearch() {
-    getData(searchId);
-  }
+    
+
 
  async function getData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
@@ -33,17 +31,7 @@ const Nav = () => {
     }
   }
 
-  // This function lets you search when you press the enter key 
-  function onSearchKeyPress(key) {
-    if (key === "Enter") {
-      onSearch();
-    }
-  }
 
-  //Fetch Data on Initial Render with default search term
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <>
@@ -62,7 +50,7 @@ const Nav = () => {
               Search library
             </Link>
             <Link to="https://badgerbadgerbadger.com/" target="_blank">
-              <button href="" className="nav__btn">
+              <button className="nav__btn">
                 Connect
               </button>
             </Link>
@@ -77,7 +65,7 @@ const Nav = () => {
               className="search__input"
               value={searchId}
               onChange={(event) => setSearchId(event.target.value)}
-              onKeyUp={(event) => onSearchKeyPress(event.key)}
+              // onKeyUp={(event) => onSearchKeyPress(event.key)}
             />
             <div className="search__icon--wrapper">
               <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" onClick={(event) => setSearchId(event.target.value)}/>
