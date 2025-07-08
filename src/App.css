@@ -321,17 +321,14 @@ Album Spotlight
 }
 
 .album__details {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .yellow {
     color: yellow;
 }
 
-.album__cover {
+.album__card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,10 +344,19 @@ Album Spotlight
 
 .album__info {
     border: 1px solid gray;
-
-    
 }
 
+
+/*
+
+HOME
+
+*/
+
+#home {
+    background-color:#242424;
+    min-height: 100vh;
+}
 
 
 /*

@@ -32,7 +32,7 @@ const AlbumInfo = () => {
             
             {albumInfo && dataReady ? (
               <div className="album__details">
-                <div className="album__cover">
+                <div className="album__card">
                   <figure className="album__image--wrapper">
                     <img
                       src={albumInfo.image[3]["#text"]}
@@ -41,7 +41,7 @@ const AlbumInfo = () => {
                     />
                   </figure> 
                   <p className="album__bio">
-                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary}`}</span>
+                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span>
                   </p>
                 </div>
                 <div className="album__info">
@@ -52,15 +52,15 @@ const AlbumInfo = () => {
                   <p className="album__name">Title:<span className="yellow">{`${albumInfo.name}`}</span></p>
                   <ol className="album__track-list">
                     Album track list:
-                    <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name}`}</span></li>
-                    <li className="track__name">Track 2: <span className="yellow">{`${albumInfo.tracks.track[1].name}`}</span></li>
-                    <li className="track__name">Track 3: <span className="yellow">{`${albumInfo.tracks.track[2].name}`}</span></li>
-                    <li className="track__name">Track 4: <span className="yellow">{`${albumInfo.tracks.track[3].name}`}</span></li>
-                    <li className="track__name">Track 5: <span className="yellow">{`${albumInfo.tracks.track[4].name}`}</span></li>
-                    <li className="track__name">Track 6: <span className="yellow">{`${albumInfo.tracks.track[5].name}`}</span></li>
-                    <li className="track__name">Track 7: <span className="yellow">{`${albumInfo.tracks.track[6].name}`}</span></li>
-                    <li className="track__name">Track 8: <span className="yellow">{`${albumInfo.tracks.track[7].name}`}</span></li>
-                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name}`}</span></li>
+                    <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li>
+                    <li className="track__name">Track 2: <span className="yellow">{`${albumInfo.tracks.track[1].name || null}`}</span></li>
+                    <li className="track__name">Track 3: <span className="yellow">{`${albumInfo.tracks.track[2].name || null}`}</span></li>
+                    <li className="track__name">Track 4: <span className="yellow">{`${albumInfo.tracks.track[3].name || null}`}</span></li>
+                    <li className="track__name">Track 5: <span className="yellow">{`${albumInfo.tracks.track[4].name || null}`}</span></li>
+                    <li className="track__name">Track 6: <span className="yellow">{`${albumInfo.tracks.track[5].name || null}`}</span></li>
+                    <li className="track__name">Track 7: <span className="yellow">{`${albumInfo.tracks.track[6].name || null}`}</span></li>
+                    <li className="track__name">Track 8: <span className="yellow">{`${albumInfo.tracks.track[7].name || null}`}</span></li>
+                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li>
                   </ol>
                  
                 </div>

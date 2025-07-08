@@ -4,34 +4,43 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { SearchLibrary } from "./SearchLibrary";
-import { useParams } from "react-router-dom";
- 
-
+import { useParams, useNavigate } from "react-router-dom";
 
 const Nav = () => {
+  let navigate = useNavigate();
   const params = useParams();
-    console.log(params)
-    const [searchId, setSearchId] = useState([])
+  console.log(params);
+  const [searchId, setSearchId] = useState([]);
 
-    
+  //this function
+  function onSearch() {
+    displayAlbumData(searchId);
+  }
 
-
- async function getData(searchTerm) {
+  async function displayAlbumData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
       console.warn("No search term provided");
       return;
     }
     try {
       const { data } = await axios.get(
-        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(searchTerm)}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
+        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(
+          searchTerm
+        )}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
-      console.log("Search results:", data); 
+      console.log("Search results:", data);
+
     } catch (error) {
       console.error("API call failed:", error);
     }
   }
 
-
+   // This function lets you search when you press the enter key
+  function onSearchKeyPress(key) {
+    if (key === "Enter") {
+      onSearch();
+    }
+  }
 
   return (
     <>
@@ -50,9 +59,7 @@ const Nav = () => {
               Search library
             </Link>
             <Link to="https://badgerbadgerbadger.com/" target="_blank">
-              <button className="nav__btn">
-                Connect
-              </button>
+              <button className="nav__btn">Connect</button>
             </Link>
           </div>
         </div>
@@ -65,10 +72,14 @@ const Nav = () => {
               className="search__input"
               value={searchId}
               onChange={(event) => setSearchId(event.target.value)}
-              // onKeyUp={(event) => onSearchKeyPress(event.key)}
+              onKeyUp={(event) => onSearchKeyPress(event.key)}
             />
             <div className="search__icon--wrapper">
-              <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" onClick={(event) => setSearchId(event.target.value)}/>
+              <FontAwesomeIcon
+                className="fa-magnifying-glass"
+                icon="fa-solid fa-magnifying-glass"
+                onClick={(event) => onSearch(event.target.value)}
+              />
             </div>
           </div>
         </div>
