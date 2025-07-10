@@ -4,13 +4,13 @@ import { useParams } from "react-router-dom";
 import Nav from "../compononents/Nav";
 
 const AlbumInfo = () => {
-  const { name } = useParams();
+  const { name, artist } = useParams();
   const [albumInfo, setAlbumInfo] = useState(null);
   const [dataReady, setDataReady] = useState(false);
 
   async function fetchAlbumInfo() {
     const { data } = await axios.get(
-      `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=Prince&album=${encodeURIComponent(
+      `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=${artist}&album=${encodeURIComponent(
         name
       )}&format=json`
     );
@@ -41,7 +41,7 @@ const AlbumInfo = () => {
                     />
                   </figure> 
                   <p className="album__bio">
-                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span>
+                    {/* Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span> */}
                   </p>
                 </div>
                 <div className="album__info">
@@ -52,7 +52,7 @@ const AlbumInfo = () => {
                   <p className="album__name">Title:<span className="yellow">{`${albumInfo.name}`}</span></p>
                   <ol className="album__track-list">
                     Album track list:
-                    <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li>
+                    {/* <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li>
                     <li className="track__name">Track 2: <span className="yellow">{`${albumInfo.tracks.track[1].name || null}`}</span></li>
                     <li className="track__name">Track 3: <span className="yellow">{`${albumInfo.tracks.track[2].name || null}`}</span></li>
                     <li className="track__name">Track 4: <span className="yellow">{`${albumInfo.tracks.track[3].name || null}`}</span></li>
@@ -60,7 +60,7 @@ const AlbumInfo = () => {
                     <li className="track__name">Track 6: <span className="yellow">{`${albumInfo.tracks.track[5].name || null}`}</span></li>
                     <li className="track__name">Track 7: <span className="yellow">{`${albumInfo.tracks.track[6].name || null}`}</span></li>
                     <li className="track__name">Track 8: <span className="yellow">{`${albumInfo.tracks.track[7].name || null}`}</span></li>
-                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li>
+                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li> */}
                   </ol>
                  
                 </div>

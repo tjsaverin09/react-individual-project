@@ -8,7 +8,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 const SearchLibrary = () => {
   let navigate = useNavigate();
   const [albums, setAlbums] = useState([]);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [dataDisplayed, setDataDisplayed] = useState(false);
   const params = useParams();
   console.log(params);
@@ -30,10 +30,51 @@ const SearchLibrary = () => {
       );
       console.log("Album data:", data);
       setAlbums(data.results.albummatches.album);
-      // setLoading(false);
+      setLoading(false);
       setDataDisplayed(true);
     } catch (error) {
       console.error("API call failed", error);
+    }
+  }
+
+  const pageState = (status) => {
+    switch(status) {
+      case 'content loading':
+        return new Array(15).fill(0).map((_, index) => (
+                  <div className="music__card">
+                      <div className="music__card--skeleton"></div>                    
+                  </div>
+              )
+            );
+      case 'content displayed':
+        return albums.slice(0, 15).map((album) => (
+                  <div
+                    className="music__card"
+                    onClick={() => navigate(`${album.name}`)}
+                  >
+                    <figure className="music__img--wrapper">
+                      <img
+                        src={album.image[2]["#text"]}
+                        alt={`${album.name} by ${album.artist}`}
+                        className="album__cover"
+                      />
+                    </figure>
+                    <div className="album__title">
+                      Album: <span className="album">{album.name}</span>
+                    </div>
+                    <div className="artist__name">
+                      Artist: <span className="artist">{album.artist}</span>
+                    </div>
+                  </div>));
+        default:
+          return <div className="music__loading">
+                <p className="result__para">How are we feeling today?</p>
+                <div className="result__icons">
+                  <FontAwesomeIcon icon="fas fa-record-vinyl" />
+                  <FontAwesomeIcon icon="fas fa-music" />
+                  <FontAwesomeIcon icon="fas fa-headphones" />
+                </div>
+                </div>    
     }
   }
 
@@ -113,39 +154,7 @@ const SearchLibrary = () => {
               </label>
             </div>
             <div className="music__list">
-              {!dataDisplayed ? (
-                <>
-                  <div className="music__loading">
-                    <p className="result__para">How are we feeling today?</p>
-                    <div className="result__icons">
-                      <FontAwesomeIcon icon="fas fa-record-vinyl" />
-                      <FontAwesomeIcon icon="fas fa-music" />
-                      <FontAwesomeIcon icon="fas fa-headphones" />
-                    </div>
-                  </div>
-                </>
-              ) : (
-                albums.slice(0, 15).map((album) => (
-                  <div
-                    className="music__card"
-                    onClick={() => navigate(`${album.name}`)}
-                  >
-                    <figure className="music__img--wrapper">
-                      <img
-                        src={album.image[2]["#text"]}
-                        alt={`${album.name} by ${album.artist}`}
-                        className="album__cover"
-                      />
-                    </figure>
-                    <div className="album__title">
-                      Album: <span className="album">{album.name}</span>
-                    </div>
-                    <div className="artist__name">
-                      Artist: <span className="artist">{album.artist}</span>
-                    </div>
-                  </div>
-                ))
-              )}
+              {pageState}
             </div>
           </div>
         </div>

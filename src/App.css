@@ -277,6 +277,12 @@ nav {
     cursor: pointer;
 }
 
+.music__card--skeleton {
+    background-color: lightgray;
+    width: 100%;
+    height: 24px;
+}
+
 .music__card:hover {
     transform: translateY(-8px);
 }
