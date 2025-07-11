@@ -30,23 +30,23 @@ const SearchLibrary = () => {
       );
       console.log("Album data:", data);
       setAlbums(data.results.albummatches.album);
-      setLoading(false);
+      setLoading(true);
       setDataDisplayed(true);
     } catch (error) {
       console.error("API call failed", error);
     }
   }
 
-  const pageState = (status) => {
-    switch(status) {
-      case 'content loading':
+  function pageState(hasSearched) {
+    switch(hasSearched) {
+      case loading:
         return new Array(15).fill(0).map((_, index) => (
                   <div className="music__card">
                       <div className="music__card--skeleton"></div>                    
                   </div>
               )
             );
-      case 'content displayed':
+      case dataDisplayed && !loading:
         return albums.slice(0, 15).map((album) => (
                   <div
                     className="music__card"
@@ -87,7 +87,7 @@ const SearchLibrary = () => {
 
   //Fetch Data on Initial Render with default search term
   useEffect(() => {
-    displayAlbumData("");
+    displayAlbumData("batman");
   }, []);
 
   return (
@@ -154,7 +154,7 @@ const SearchLibrary = () => {
               </label>
             </div>
             <div className="music__list">
-              {pageState}
+              {pageState()}
             </div>
           </div>
         </div>
