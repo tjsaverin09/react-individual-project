@@ -5,6 +5,7 @@ import Nav from "../compononents/Nav";
 
 const AlbumInfo = () => {
   const { name, artist } = useParams();
+  console.log(artist, name)
   const [albumInfo, setAlbumInfo] = useState(null);
   const [dataReady, setDataReady] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,7 +50,7 @@ const AlbumInfo = () => {
                     />
                   </figure>
                   <p className="album__bio">
-                    {/* Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span> */}
+                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span>
                   </p>
                 </div>
                 <div className="album__info">
@@ -63,7 +64,7 @@ const AlbumInfo = () => {
                   </p>
                   <ol className="album__track-list">
                     Album track list:
-                    {/* <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li>
+                    <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li> 
                     <li className="track__name">Track 2: <span className="yellow">{`${albumInfo.tracks.track[1].name || null}`}</span></li>
                     <li className="track__name">Track 3: <span className="yellow">{`${albumInfo.tracks.track[2].name || null}`}</span></li>
                     <li className="track__name">Track 4: <span className="yellow">{`${albumInfo.tracks.track[3].name || null}`}</span></li>
@@ -71,7 +72,7 @@ const AlbumInfo = () => {
                     <li className="track__name">Track 6: <span className="yellow">{`${albumInfo.tracks.track[5].name || null}`}</span></li>
                     <li className="track__name">Track 7: <span className="yellow">{`${albumInfo.tracks.track[6].name || null}`}</span></li>
                     <li className="track__name">Track 8: <span className="yellow">{`${albumInfo.tracks.track[7].name || null}`}</span></li>
-                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li> */}
+                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li> 
                   </ol>
                 </div>
               </div>

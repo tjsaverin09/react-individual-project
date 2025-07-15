@@ -14,7 +14,7 @@ const SearchLibrary = () => {
   console.log(params);
   const [searchId, setSearchId] = useState([]);
 
-  //this function
+  //this function searchs the albums to display
   function onSearch() {
     displayAlbumData(searchId);
   }
@@ -30,53 +30,55 @@ const SearchLibrary = () => {
       );
       console.log("Album data:", data);
       setAlbums(data.results.albummatches.album);
-      setLoading(true);
+      setLoading(false);
       setDataDisplayed(true);
     } catch (error) {
       console.error("API call failed", error);
     }
   }
 
-  function pageState(hasSearched) {
-    switch(hasSearched) {
-      case loading:
+  function pageState() {
+    if (loading) {
         return new Array(15).fill(0).map((_, index) => (
-                  <div className="music__card">
-                      <div className="music__card--skeleton"></div>                    
-                  </div>
-              )
-            );
-      case dataDisplayed && !loading:
+          <div className="music__card">
+            <div className="music__card--skeleton"></div>
+          </div>
+        ));
+    } else if (dataDisplayed && albums.length > 0) {
         return albums.slice(0, 15).map((album) => (
-                  <div
-                    className="music__card"
-                    onClick={() => navigate(`${album.name}`)}
-                  >
-                    <figure className="music__img--wrapper">
-                      <img
-                        src={album.image[2]["#text"]}
-                        alt={`${album.name} by ${album.artist}`}
-                        className="album__cover"
-                      />
-                    </figure>
-                    <div className="album__title">
-                      Album: <span className="album">{album.name}</span>
-                    </div>
-                    <div className="artist__name">
-                      Artist: <span className="artist">{album.artist}</span>
-                    </div>
-                  </div>));
-        default:
-          return <div className="music__loading">
-                <p className="result__para">How are we feeling today?</p>
-                <div className="result__icons">
-                  <FontAwesomeIcon icon="fas fa-record-vinyl" />
-                  <FontAwesomeIcon icon="fas fa-music" />
-                  <FontAwesomeIcon icon="fas fa-headphones" />
-                </div>
-                </div>    
+          <div
+            className="music__card"
+            onClick={() => navigate(`${album.name}`)}
+          >
+            <figure className="music__img--wrapper">
+              <img
+                src={album.image[2]["#text"]}
+                alt={`${album.name} by ${album.artist}`}
+                className="album__cover"
+              />
+            </figure>
+            <div className="album__title">
+              Album: <span className="album">{album.name}</span>
+            </div>
+            <div className="artist__name">
+              Artist: <span className="artist">{album.artist}</span>
+            </div>
+          </div>
+        ));
+       } else {
+         return (
+           <div className="music__loading">
+             <p className="result__para">How are we feeling today?</p>
+             <div className="result__icons">
+               <FontAwesomeIcon icon="fas fa-record-vinyl" />
+               <FontAwesomeIcon icon="fas fa-music" />
+               <FontAwesomeIcon icon="fas fa-headphones" />
+             </div>
+           </div>
+         );
+       }
     }
-  }
+  
 
   // This function lets you search when you press the enter key
   function onSearchKeyPress(key) {
@@ -87,7 +89,7 @@ const SearchLibrary = () => {
 
   //Fetch Data on Initial Render with default search term
   useEffect(() => {
-    displayAlbumData("batman");
+    displayAlbumData("");
   }, []);
 
   return (
@@ -153,9 +155,7 @@ const SearchLibrary = () => {
                 </select>
               </label>
             </div>
-            <div className="music__list">
-              {pageState()}
-            </div>
+            <div className="music__list">{pageState()}</div>
           </div>
         </div>
       </section>
