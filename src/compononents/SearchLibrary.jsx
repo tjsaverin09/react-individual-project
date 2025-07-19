@@ -168,9 +168,9 @@ const SearchLibrary = () => {
                 Find alphabetically:
                 <select
                   id="filter"
-                  onChange={filterAlbums(filter)}
+                  onChange={(e) => filterAlbums(e.target.value)}
                 >
-                  <option value="" disabled defaultValue>
+                  <option value="DEFAULT" disabled>
                     Sort:
                   </option>
                   <option value="A-Z">A-Z</option>
