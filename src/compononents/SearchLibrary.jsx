@@ -7,12 +7,12 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 
 const SearchLibrary = () => {
   let navigate = useNavigate();
+  const { albumName }= useParams();
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dataDisplayed, setDataDisplayed] = useState(false);
-  const params = useParams();
-  console.log(params);
   const [searchId, setSearchId] = useState([]);
+
 
   //this function searchs the albums to display
   function onSearch() {
@@ -39,46 +39,69 @@ const SearchLibrary = () => {
 
   function pageState() {
     if (loading) {
-        return new Array(15).fill(0).map((_, index) => (
-          <div className="music__card">
-            <div className="music__card--skeleton"></div>
-          </div>
-        ));
+      return new Array(15).fill(0).map((_, index) => (
+        <div className="music__card">
+          <div className="music__card--skeleton"></div>
+        </div>
+      ));
     } else if (dataDisplayed && albums.length > 0) {
-        return albums.slice(0, 15).map((album) => (
-          <div
-            className="music__card"
-            onClick={() => navigate(`${album.name}`)}
-          >
-            <figure className="music__img--wrapper">
-              <img
-                src={album.image[2]["#text"]}
-                alt={`${album.name} by ${album.artist}`}
-                className="album__cover"
-              />
-            </figure>
-            <div className="album__title">
-              Album: <span className="album">{album.name}</span>
-            </div>
-            <div className="artist__name">
-              Artist: <span className="artist">{album.artist}</span>
-            </div>
+      return albums.slice(0, 15).map((album) => (
+        <div
+          className="music__card"
+          onClick={() => navigate(`${album.artist}/${album.name}`)}
+        >
+          <figure className="music__img--wrapper">
+            <img
+              src={album.image[2]["#text"]}
+              alt={`${album.name} by ${album.artist}`}
+              className="album__cover"
+            />
+          </figure>
+          <div className="album__title">
+            Album: <span className="album">{album.name}</span>
           </div>
-        ));
-       } else {
-         return (
-           <div className="music__loading">
-             <p className="result__para">How are we feeling today?</p>
-             <div className="result__icons">
-               <FontAwesomeIcon icon="fas fa-record-vinyl" />
-               <FontAwesomeIcon icon="fas fa-music" />
-               <FontAwesomeIcon icon="fas fa-headphones" />
-             </div>
-           </div>
-         );
-       }
+          <div className="artist__name">
+            Artist: <span className="artist">{album.artist}</span>
+          </div>
+        </div>
+      ));
+    } else {
+      return (
+        <div className="music__loading">
+          <p className="result__para">How are we feeling today?</p>
+          <div className="result__icons">
+            <FontAwesomeIcon icon="fas fa-record-vinyl" />
+            <FontAwesomeIcon icon="fas fa-music" />
+            <FontAwesomeIcon icon="fas fa-headphones" />
+          </div>
+        </div>
+      );
     }
-  
+  }
+
+  function filterAlbums(filter) {
+    console.log(filter)
+    if (filter === "A-Z") {
+      setAlbums(
+        albums
+        .slice()
+        .sort(
+          (a, b) =>
+          (a.albums[0] - b.albums[0])
+        )
+      )
+    }
+    if (filter === "Z-A") {
+      setAlbums(
+        albums
+        .slice()
+        .sort(
+          (a, b) => 
+          (b.albums[0] - a.albums[0]) 
+        )
+      )
+    }
+  }
 
   // This function lets you search when you press the enter key
   function onSearchKeyPress(key) {
@@ -145,7 +168,7 @@ const SearchLibrary = () => {
                 Find alphabetically:
                 <select
                   id="filter"
-                  // onchange="filterAlbums(event)"
+                  onChange={filterAlbums(filter)}
                 >
                   <option value="" disabled defaultValue>
                     Sort:

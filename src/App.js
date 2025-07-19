@@ -1,10 +1,9 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Nav from "./compononents/Nav";
-import SearchLibrary from "./compononents/SearchLibrary";
 import { useState } from 'react'
 import Home from "./Pages/Home";
 import AlbumInfo from "./Pages/AlbumInfo";
+import Footer from "./compononents/Footer";
 
 function App() {
 const [searchId, setSearchId] = useState("");
@@ -14,8 +13,9 @@ const [searchId, setSearchId] = useState("");
       <>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path=":name/:artist" element={<AlbumInfo />}></Route>
+          <Route path=":artist/:albumName" element={<AlbumInfo />}></Route>
         </Routes>
+        <Footer />
       </>
     </Router>
   );
