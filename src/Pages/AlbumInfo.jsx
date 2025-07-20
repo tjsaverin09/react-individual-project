@@ -16,7 +16,7 @@ const AlbumInfo = () => {
     setHasSearched(true);
     try {
       const { data } = await axios.get(
-        `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=Prince&album=${encodeURIComponent(
+        `https://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=01a9bc49bbc9abed2dd1966234ac875e&artist=${artist}&album=${encodeURIComponent(
           albumName
         )}&format=json`
       );
@@ -50,7 +50,7 @@ const AlbumInfo = () => {
                     />
                   </figure>
                   <p className="album__bio">
-                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || albumInfo.playcount}`}</span>
+                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || 'mushmushmush'}`}</span>
                   </p>
                 </div>
                 <div className="album__info">

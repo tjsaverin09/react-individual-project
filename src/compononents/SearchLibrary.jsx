@@ -68,8 +68,8 @@ const SearchLibrary = () => {
     } else {
       return (
         <div className="music__loading">
-          <p className="result__para">How are we feeling today?</p>
-          <div className="result__icons">
+          <p className="search__library--para">How are we feeling today?</p>
+          <div className="search__library--icons">
             <FontAwesomeIcon icon="fas fa-record-vinyl" />
             <FontAwesomeIcon icon="fas fa-music" />
             <FontAwesomeIcon icon="fas fa-headphones" />
@@ -87,7 +87,7 @@ const SearchLibrary = () => {
         .slice()
         .sort(
           (a, b) =>
-          (a.albums[0] - b.albums[0])
+            a.name.localeCompare(b.name)
         )
       )
     }
@@ -97,7 +97,7 @@ const SearchLibrary = () => {
         .slice()
         .sort(
           (a, b) => 
-          (b.albums[0] - a.albums[0]) 
+            b.name.localeCompare(a.name) 
         )
       )
     }
@@ -159,19 +159,19 @@ const SearchLibrary = () => {
           </div>
         </div>
       </nav>
-      <section id="results">
+      <section id="library">
         <div className="container">
           <div className="row">
-            <div className="result__header">
-              <h2 className="result__title">Groove On!</h2>
-              <label htmlFor="filter" className="result__filter">
+            <div className="search__library--header">
+              <h2 className="search__library--title">Groove On!</h2>
+              <label htmlFor="filter" className="search__library--filter">
                 Find alphabetically:
                 <select
                   id="filter"
-                  onChange={(e) => filterAlbums(e.target.value)}
+                  onChange={(event) => filterAlbums(event.target.value)}
                 >
                   <option value="DEFAULT" disabled>
-                    Sort:
+                    Sort
                   </option>
                   <option value="A-Z">A-Z</option>
                   <option value="Z-A">Z-A</option>
