@@ -29,8 +29,8 @@ const SearchLibrary = () => {
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
       console.log("Album data:", data);
-      setAlbums(data.results.albummatches.album);
       setLoading(false);
+      setAlbums(data.results.albummatches.album);
       setDataDisplayed(true);
     } catch (error) {
       console.error("API call failed", error);
