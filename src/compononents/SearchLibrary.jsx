@@ -24,6 +24,7 @@ const SearchLibrary = () => {
       console.warn("no search term provided");
       return;
     }
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
@@ -37,11 +38,17 @@ const SearchLibrary = () => {
     }
   }
 
+  function imageLoaded() {
+    console.log('imageLoaded')
+  }
+
   function pageState() {
     if (loading) {
       return new Array(15).fill(0).map((_, index) => (
         <div className="music__card">
-          <div className="music__card--skeleton"></div>
+          <div className="music-card__img--skeleton"></div>
+          <div className="music-card__title--skeleton"></div>
+          <div className="music-card__artist--skeleton"></div>
         </div>
       ));
     } else if (dataDisplayed && albums.length > 0) {
@@ -55,6 +62,7 @@ const SearchLibrary = () => {
               src={album.image[2]["#text"]}
               alt={`${album.name} by ${album.artist}`}
               className="album__cover"
+              onLoad={imageLoaded}
             />
           </figure>
           <div className="album__title">

@@ -278,13 +278,22 @@ nav {
   cursor: pointer;
 }
 
-.music__card--skeleton {
+.music-card__img--skeleton {
   background-color: #dddbdd;
   width: 100%;
-  height: 200px;
+  height: 150px;
   position: relative;
-  overflow: hidden;
+  
 }
+
+.music-card__title--skeleton,
+.music-card__artist--skeleton  {
+  background-color: #dddbdd;
+  width: 100%;
+  max-width: 100px;
+  position: relative;
+}
+
 
 .music__card--skeleton::after {
   content: '';  
