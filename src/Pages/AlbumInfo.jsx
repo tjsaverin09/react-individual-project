@@ -5,7 +5,7 @@ import Nav from "../compononents/Nav";
 
 const AlbumInfo = () => {
   const { artist, albumName } = useParams();
-  console.log( artist, albumName)
+  console.log(artist, albumName);
   const [albumInfo, setAlbumInfo] = useState(null);
   const [dataReady, setDataReady] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -50,7 +50,10 @@ const AlbumInfo = () => {
                     />
                   </figure>
                   <p className="album__bio">
-                    Album bio:<span className="yellow">{`${albumInfo.wiki.summary || 'mushmushmush'}`}</span>
+                    Album bio:
+                    <span className="yellow">{`${
+                      albumInfo.wiki.summary || "mushmushmush"
+                    }`}</span>
                   </p>
                 </div>
                 <div className="album__info">
@@ -64,33 +67,85 @@ const AlbumInfo = () => {
                   </p>
                   <ol className="album__track-list">
                     Album track list:
-                    <li className="track__name">Track 1: <span className="yellow">{`${albumInfo.tracks.track[0].name || null}`}</span></li> 
-                    <li className="track__name">Track 2: <span className="yellow">{`${albumInfo.tracks.track[1].name || null}`}</span></li>
-                    <li className="track__name">Track 3: <span className="yellow">{`${albumInfo.tracks.track[2].name || null}`}</span></li>
-                    <li className="track__name">Track 4: <span className="yellow">{`${albumInfo.tracks.track[3].name || null}`}</span></li>
-                    <li className="track__name">Track 5: <span className="yellow">{`${albumInfo.tracks.track[4].name || null}`}</span></li>
-                    <li className="track__name">Track 6: <span className="yellow">{`${albumInfo.tracks.track[5].name || null}`}</span></li>
-                    <li className="track__name">Track 7: <span className="yellow">{`${albumInfo.tracks.track[6].name || null}`}</span></li>
-                    <li className="track__name">Track 8: <span className="yellow">{`${albumInfo.tracks.track[7].name || null}`}</span></li>
-                    <li className="track__name">Track 9: <span className="yellow">{`${albumInfo.tracks.track[8].name || null}`}</span></li> 
+                    <li className="track__name">
+                      Track 1:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[0].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 2:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[1].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 3:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[2].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 4:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[3].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 5:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[4].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 6:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[5].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 7:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[6].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 8:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[7].name || null
+                      }`}</span>
+                    </li>
+                    <li className="track__name">
+                      Track 9:
+                      <span className="yellow">{`${
+                        albumInfo.tracks.track[8].name || null
+                      }`}</span>
+                    </li>
                   </ol>
                 </div>
               </div>
             ) : (
               <>
-              <div id="album__unavailable">
-                <div className="container">
-                  <div className="row">
-                    <div className="album__unavailable--details">
-                    <h3>Oops, seems like your music must've got lost in the sauce</h3>
-                    <h3>No worries, just try a different rhythym for the night</h3>
-                    <Link to="/">
-                    <button className="album__unavailable--btn">Back to home</button>
-                    </Link>
+                <div id="album__unavailable">
+                  <div className="container">
+                    <div className="row">
+                      <div className="album__unavailable--details">
+                        <h3>
+                          Oops, seems like your music must've got lost in the
+                          sauce
+                        </h3>
+                        <h3>
+                          No worries, just try a different rhythym for the night
+                        </h3>
+                        <Link to="/">
+                          <button className="album__unavailable--btn">
+                            Back to home
+                          </button>
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
               </>
             )}
           </div>
