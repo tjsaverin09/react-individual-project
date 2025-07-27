@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from 'react'
 import Home from "./Pages/Home";
-import AlbumInfo from "./Pages/AlbumInfo";
+import AlbumInfo from "./Pages/AlbumSpotlight";
 import Footer from "./compononents/Footer";
 
 function App() {

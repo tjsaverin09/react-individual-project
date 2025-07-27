@@ -365,18 +365,37 @@ Album Spotlight
   min-height: 100vh;
 }
 
-.album__details {
-}
-
 .yellow {
   color: yellow;
+}
+
+.album__details {
+  display: flex;
+  justify-content: center;
+}
+
+.album__img--wrapper{
+  display: inline-block;
+  cursor: pointer;
+}
+
+.album__image {
+  cursor: pointer;
+}
+
+img {
+  transition: transform 0.3s ease;
+}
+
+img.magnified {
+  transform: scale(2);
 }
 
 .album__card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid gray;
+  justify-content: start;
   width: 50%;
   margin-right: auto;
 }
@@ -386,7 +405,11 @@ Album Spotlight
 }
 
 .album__info {
-  border: 1px solid gray;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .album__unavailable--details {

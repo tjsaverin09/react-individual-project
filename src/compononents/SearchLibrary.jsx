@@ -7,13 +7,12 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 
 const SearchLibrary = () => {
   let navigate = useNavigate();
-  const { albumName }= useParams();
+  const { albumName } = useParams();
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dataDisplayed, setDataDisplayed] = useState(false);
   const [searchId, setSearchId] = useState([]);
   const [loadedImages, setLoadedImages] = useState(new Set());
-
 
   //this function searchs the albums to display
   function onSearch() {
@@ -40,10 +39,6 @@ const SearchLibrary = () => {
     }
   }
 
-  function handleImageLoad() {
-    console.log('handleImageLoad')
-  }
-
   function pageState() {
     if (loading) {
       return new Array(15).fill(0).map((_, index) => (
@@ -56,39 +51,39 @@ const SearchLibrary = () => {
     } else if (dataDisplayed && albums.length > 0) {
       return albums.slice(0, 15).map((album, index) => {
         const albumKey = `${album.artist}-${album.name}-${index}`;
-        const isImageLoaded = loadedImages.has(albumKey);
-        console.log(isImageLoaded)
 
-        return(
-        <div
-          className="music__card"
-          key={albumKey}
-          onClick={() => navigate(`${album.artist}/${album.name}`)}
-        >
-          {!isImageLoaded && <div className="music-card__img--skeleton"></div>}
-          <figure className="music__img--wrapper" style={{ display: isImageLoaded ? 'block' : 'none' }}>
-            <img
-              src={album.image[2]["#text"]}
-              alt={`${album.name} by ${album.artist}`}
-              className="album__cover"
-              onLoad={() => handleImageLoad(albumKey)}
-            />
-          </figure>
-          {isImageLoaded && (
-          <>
-          <div className="album__title">
-            Album: <span className="album">{album.name}</span>
-          </div>
-          <div className="artist__name">
-            Artist: <span className="artist">{album.artist}</span>
-          </div>
-          </>
+        return (
+          <div
+            className="music__card"
+            key={albumKey}
+            onClick={() => navigate(`${album.artist}/${album.name}`)}
+          >
+            <figure className="music__img--wrapper">
+              <img
+                src={album.image[2]["#text"] || 'https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg'}
+                alt={`${album.name} by ${album.artist}`}
+                className="album__cover"
+              />
+            </figure>
 
-          )}
-        </div>
+            <>
+              <div className="album__title">
+                Album: <span className="album">{album.name}</span>
+              </div>
+              <div className="artist__name">
+                Artist: <span className="artist">{album.artist}</span>
+              </div>
+            </>
+          </div>
         );
-    });
-    } else {
+      });
+    } else if (!dataDisplayed && albums.length < 0) {
+      return (
+        <>
+        oops sorry we made a booboo
+        </>
+      )
+    }else {
       return (
         <div className="music__loading">
           <p className="search__library--para">How are we feeling today?</p>
@@ -103,26 +98,12 @@ const SearchLibrary = () => {
   }
 
   function filterAlbums(filter) {
-    console.log(filter)
+    console.log(filter);
     if (filter === "A-Z") {
-      setAlbums(
-        albums
-        .slice()
-        .sort(
-          (a, b) =>
-            a.name.localeCompare(b.name)
-        )
-      )
+      setAlbums(albums.slice().sort((a, b) => a.name.localeCompare(b.name)));
     }
     if (filter === "Z-A") {
-      setAlbums(
-        albums
-        .slice()
-        .sort(
-          (a, b) => 
-            b.name.localeCompare(a.name) 
-        )
-      )
+      setAlbums(albums.slice().sort((a, b) => b.name.localeCompare(a.name)));
     }
   }
 
