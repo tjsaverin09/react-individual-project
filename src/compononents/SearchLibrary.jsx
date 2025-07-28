@@ -173,6 +173,7 @@ const SearchLibrary = () => {
                 <select
                   id="filter"
                   onChange={(event) => filterAlbums(event.target.value)}
+                  defaultValue="DEFAULT"
                 >
                   <option value="DEFAULT" disabled>
                     Sort

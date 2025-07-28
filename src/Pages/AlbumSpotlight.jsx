@@ -11,6 +11,7 @@ const AlbumSpotlight = () => {
   const [loading, setLoading] = useState(false);
   const [hasSearched, setHasSearched] = useState(false);
   const [isMagnified, setIsMagnified] = useState(false)
+  const [tracks, setTracks] = useState([]);
 
   async function fetchAlbumInfo() {
     setLoading(true);
@@ -22,7 +23,8 @@ const AlbumSpotlight = () => {
         )}&format=json`
       );
       setAlbumInfo(data.album);
-      setDataReady(true)
+      setDataReady(true);
+      setTracks(data.album.tracks.track.name)
       console.log(data);
     } catch (error) {
       console.error("Error fetching album info:", error);
@@ -73,7 +75,8 @@ const AlbumSpotlight = () => {
                   </p>
                   <ol className="album__track-list">
                     Track list:
-                    <li className="track__name">
+                 
+                    {/* <li className="track__name">
                     1:
                       <span className="yellow">{`${
                         albumInfo.tracks.track[0].name || null
@@ -126,8 +129,8 @@ const AlbumSpotlight = () => {
                       <span className="yellow">{`${
                         albumInfo.tracks.track[8].name || null
                       }`}</span>
-                    </li>
-                    <li className="track__name">
+                    </li> */}
+                    {/* <li className="track__name">
                     10:
                       <span className="yellow">{`${
                         albumInfo.tracks.track[9].name || null
@@ -156,7 +159,7 @@ const AlbumSpotlight = () => {
                       <span className="yellow">{`${
                         albumInfo.tracks.track[13].name || null
                       }`}</span>
-                    </li>
+                    </li> */}
                   </ol>
                 </div>
               </div>
