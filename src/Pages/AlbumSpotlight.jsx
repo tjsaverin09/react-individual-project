@@ -75,7 +75,9 @@ const AlbumSpotlight = () => {
                   </p>
                   <ol className="album__track-list">
                     Track list:
-                 
+                    {tracks.map((track, index) => (
+                      <li key={index}>{track.name}</li>
+                    ))}
                     {/* <li className="track__name">
                     1:
                       <span className="yellow">{`${
