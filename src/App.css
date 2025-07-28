@@ -23,7 +23,6 @@ a {
 }
 
 li {
-  list-style-type: none;
 }
 
 h3 {
@@ -402,6 +401,7 @@ img.magnified {
 .album__bio {
   text-align: center;
 }
+
 
 .album__info {
   width: 50%;

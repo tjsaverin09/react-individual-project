@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Switch } from "react-router-dom";
 import { useState } from 'react'
 import Home from "./Pages/Home";
 import AlbumInfo from "./Pages/AlbumSpotlight";
@@ -14,6 +14,7 @@ const [searchId, setSearchId] = useState("");
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path=":artist/:albumName" element={<AlbumInfo />}></Route>
+          <Route path=":searchlibrary" element={<Home />}></Route>
         </Routes>
         <Footer />
       </>

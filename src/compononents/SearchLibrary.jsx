@@ -3,10 +3,16 @@ import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Nav from "./Nav";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
+
+const useQuery = () => {
+  return new URLSearchParams(useLocation().search)
+}
 
 const SearchLibrary = () => {
   let navigate = useNavigate();
+  const query = useQuery();
+  const searchTerm = query.get("query");
   const { albumName } = useParams();
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -183,7 +189,7 @@ const SearchLibrary = () => {
                 </select>
               </label>
             </div>
-            <div className="music__list">{pageState()}</div>
+            <div className="music__list">{pageState() || searchTerm}</div>
           </div>
         </div>
       </section>

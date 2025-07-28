@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { SearchLibrary } from "./SearchLibrary";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSearch } from "../hooks/useSearch";
 
 const Nav = () => {
-  let navigate = useNavigate();
   const params = useParams();
   console.log(params);
   const [searchId, setSearchId] = useState([]);
+  const { searchTerm, handleChange, handleKeyDown, executeSearch } = useSearch();
 
   //this function
   function onSearch() {
@@ -70,15 +70,15 @@ const Nav = () => {
               type="text"
               placeholder="Look up Artist or Album..."
               className="search__input"
-              value={searchId}
-              onChange={(event) => setSearchId(event.target.value)}
-              onKeyUp={(event) => onSearchKeyPress(event.key)}
+              value={searchTerm}
+              onChange={handleChange}
+              onKeyUp={handleKeyDown}
             />
             <div className="search__icon--wrapper">
               <FontAwesomeIcon
                 className="fa-magnifying-glass"
                 icon="fa-solid fa-magnifying-glass"
-                onClick={(event) => onSearch(event.target.value)}
+                onClick={executeSearch}
               />
             </div>
           </div>

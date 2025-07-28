@@ -24,7 +24,8 @@ const AlbumSpotlight = () => {
       );
       setAlbumInfo(data.album);
       setDataReady(true);
-      setTracks(data.album.tracks.track.name)
+      setTracks(data.album.tracks.track)
+      console.log(tracks)
       console.log(data);
     } catch (error) {
       console.error("Error fetching album info:", error);
@@ -60,9 +61,9 @@ const AlbumSpotlight = () => {
                   <p className="album__bio">
                     Album bio:
                     <span className="yellow">{`${
-                      albumInfo.wiki.summary || null
+                      albumInfo.wiki.summary || "bio unavailable"
                     }`}</span>
-                  </p>
+                  </p> 
                 </div>
                 <div className="album__info">
                   <h2 className="album__title">{albumName}</h2>
@@ -75,93 +76,9 @@ const AlbumSpotlight = () => {
                   </p>
                   <ol className="album__track-list">
                     Track list:
-                    {tracks.map((track, index) => (
-                      <li key={index}>{track.name}</li>
+                    {tracks && tracks.map((track, index) =>(
+                      <li key={index}><span className="yellow">{track.name || "tracks unavailable"}</span></li>
                     ))}
-                    {/* <li className="track__name">
-                    1:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[0].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    2:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[1].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    3:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[2].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    4:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[3].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    5:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[4].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    6:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[5].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    7:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[6].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    8:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[7].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    9:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[8].name || null
-                      }`}</span>
-                    </li> */}
-                    {/* <li className="track__name">
-                    10:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[9].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    11:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[10].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    12:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[11].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    13:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[12].name || null
-                      }`}</span>
-                    </li>
-                    <li className="track__name">
-                    14:
-                      <span className="yellow">{`${
-                        albumInfo.tracks.track[13].name || null
-                      }`}</span>
-                    </li> */}
                   </ol>
                 </div>
               </div>
