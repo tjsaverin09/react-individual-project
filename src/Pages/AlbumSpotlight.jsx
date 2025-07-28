@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Nav from "../compononents/Nav";
 
 const AlbumSpotlight = () => {
+  
   const { artist, albumName } = useParams();
   console.log(artist, albumName);
   const [albumInfo, setAlbumInfo] = useState(null);
@@ -34,6 +35,9 @@ const AlbumSpotlight = () => {
     }
   }
 
+const bio = albumInfo?.wiki?.summary ||'content is unavailable';
+const trackList = albumInfo?.tracks || [];
+
   const toggleMagnify = () => {
     setIsMagnified(!isMagnified)
   }  
@@ -61,7 +65,7 @@ const AlbumSpotlight = () => {
                   <p className="album__bio">
                     Album bio:
                     <span className="yellow">{`${
-                      albumInfo.wiki.summary || "bio unavailable"
+                      bio
                     }`}</span>
                   </p> 
                 </div>
@@ -76,9 +80,13 @@ const AlbumSpotlight = () => {
                   </p>
                   <ol className="album__track-list">
                     Track list:
-                    {tracks && tracks.map((track, index) =>(
-                      <li key={index}><span className="yellow">{track.name || "tracks unavailable"}</span></li>
-                    ))}
+                    {tracks.length > 0 ? (
+                       tracks.map((track, index) =>(
+                      <li key={index}><span className="yellow">{track.name}</span></li>
+                    ))
+                    ) : (
+                      <li className="tracks__unavailable"><span className="yellow">No tracks available</span></li>
+                    )}
                   </ol>
                 </div>
               </div>

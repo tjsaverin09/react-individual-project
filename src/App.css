@@ -411,6 +411,10 @@ img.magnified {
   align-items: center;
 }
 
+.tracks__unavailable {
+  list-style-type: none;
+}
+
 .album__unavailable--details {
   display: flex;
   flex-direction: column;

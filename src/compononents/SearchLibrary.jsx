@@ -83,7 +83,7 @@ const SearchLibrary = () => {
           </div>
         );
       });
-    } else if (!dataDisplayed && albums.length < 0) {
+    } else if (dataDisplayed && albums.length < 0) {
       return (
         <>
         oops sorry we made a booboo
@@ -127,7 +127,7 @@ const SearchLibrary = () => {
 
   return (
     <>
-      <nav>
+      {/* <nav>
         <div className="nav__row">
           <div className="nav__logo">
             <Link to="/" className="nav__logo--link">
@@ -168,7 +168,7 @@ const SearchLibrary = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
       <section id="library">
         <div className="container">
           <div className="row">
