@@ -22,13 +22,13 @@ a {
   text-decoration: none;
 }
 
-li {
-}
-
 h3 {
   text-align: center;
 }
 
+em{
+  font-family: 'gluten';
+}
 /*
 
 NAV
@@ -136,15 +136,85 @@ nav {
 }
 
 .fa-magnifying-glass {
+  
   width: 1em;
   height: 1em;
   font-size: 24px;
-  color: maroon;
+  color: maroon ;
   transition: all 0.3s ease;
 }
 
 .fa-magnifying-glass:hover {
   color: lightblue;
+}
+
+/*
+
+HOME
+
+*/
+
+#home {
+  background-color: #242424;
+  min-height: 100vh;
+}
+
+.home__container {
+  text-align: center;
+}
+
+.home__top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.home__top--left,
+.home__top--right {
+  font-family: "gluten"
+}
+
+.music__home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home__para {
+  font-family: gluten;
+  font-size: 24px;
+  letter-spacing: 0.5px;
+}
+
+.home__icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; 
+}
+
+.icon {
+  font-size: 50px;
+  margin: 0 10px;
+  animation: wave 0.9s ease infinite;
+}
+
+.icon:nth-child(1){
+  animation-delay: 0s;
+}
+.icon:nth-child(2){
+  animation-delay:0.1s;
+}
+.icon:nth-child(3){
+  animation-delay:0.2s;
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 /*
@@ -472,17 +542,6 @@ footer {
 .footer__copyright {
   color: white;
   margin-top: 16px;
-}
-
-/*
-
-HOME
-
-*/
-
-#home {
-  background-color: #242424;
-  min-height: 100vh;
 }
 
 /*

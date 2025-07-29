@@ -9,7 +9,7 @@ const handleChange = (event) => setSearchTerm(event.target.value);
 
 const executeSearch = () => {
   if(searchTerm.trim()) {
-    navigate(`Home?query=${encodeURIComponent(searchTerm)}`)
+    navigate(`/searchLibrary?query=${encodeURIComponent(searchTerm)}`)
   }
 };
 

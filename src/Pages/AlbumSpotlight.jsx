@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import Nav from "../compononents/Nav";
 
 const AlbumSpotlight = () => {
   
@@ -48,7 +47,6 @@ const trackList = albumInfo?.tracks || [];
 
   return (
     <>
-      <Nav />
       <div id="album__spotlight">
         <div className="container">
           <div className="row">

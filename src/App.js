@@ -6,14 +6,15 @@ import AlbumInfo from "./Pages/AlbumSpotlight";
 import Footer from "./compononents/Footer";
 import Nav from "./compononents/Nav";
 import axios from "axios";
+import SearchLibrary from "./compononents/SearchLibrary";
 
 const ApiContext = createContext();
 
 function App() {
 const [searchTerm, setSearchTerm] = useState("");
-const [ data, setData] = useState(null);
+const [ data, setData] = useState([]);
 
-async function displayAlbumData(searchTerm) {
+async function fetchAlbumData(searchTerm) {
     if (!searchTerm || searchTerm.trim() === "") {
       console.warn("No search term provided");
       return;
@@ -24,15 +25,15 @@ async function displayAlbumData(searchTerm) {
           searchTerm
         )}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
       );
-      console.log("Search results:", response);
       setData(response.results.albummatches.album)
+      console.log("Search results:", response);
     } catch (error) {
       console.error("API call failed:", error);
     }
   }
 
   useEffect(() => {
-    displayAlbumData('the stranger')
+    fetchAlbumData()
   }, [])
 
   return (
@@ -42,8 +43,8 @@ async function displayAlbumData(searchTerm) {
           <Nav searchTerm={searchTerm} />
         <Routes>
           <Route path="/" element={<Home />}></Route>
+          <Route path="/searchLibrary" element={<SearchLibrary />}></Route>
           <Route path=":artist/:albumName" element={<AlbumInfo />}></Route>
-          <Route path=":searchlibrary" element={<Home />}></Route>
         </Routes>
         <Footer />
       </>

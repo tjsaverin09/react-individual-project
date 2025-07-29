@@ -3,16 +3,12 @@ import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Nav from "./Nav";
-import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const useQuery = () => {
-  return new URLSearchParams(useLocation().search)
-}
+
 
 const SearchLibrary = () => {
   let navigate = useNavigate();
-  const query = useQuery();
-  const searchTerm = query.get("query");
   const { albumName } = useParams();
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -31,7 +27,6 @@ const SearchLibrary = () => {
       return;
     }
     setLoading(true);
-    setLoadedImages(new Set());
     try {
       const { data } = await axios.get(
         `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${searchTerm}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
@@ -92,7 +87,7 @@ const SearchLibrary = () => {
     }else {
       return (
         <div className="music__loading">
-          <p className="search__library--para">How are we feeling today?</p>
+          <p className="search__library--para">You have <em>phenomenal</em> taste!</p>
           <div className="search__library--icons">
             <FontAwesomeIcon icon="fas fa-record-vinyl" />
             <FontAwesomeIcon icon="fas fa-music" />
@@ -189,7 +184,7 @@ const SearchLibrary = () => {
                 </select>
               </label>
             </div>
-            <div className="music__list">{pageState() || searchTerm}</div>
+            <div className="music__list">{pageState()}</div>
           </div>
         </div>
       </section>
