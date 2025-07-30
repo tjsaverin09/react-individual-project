@@ -4,13 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useSearch } from "../hooks/useSearch";
+import { useSearchContext } from "../hooks/SearchProvider";
 
 const Nav = () => {
   const params = useParams();
   console.log(params);
   const [searchId, setSearchId] = useState([]);
-  const { searchTerm, handleChange, handleKeyDown, executeSearch } = useSearch();
+  const { searchTerm, handleChange, handleKeyDown, executeSearch } = useSearchContext();
 
   //this function
   function onSearch() {

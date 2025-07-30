@@ -9,7 +9,8 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const SearchLibrary = () => {
   let navigate = useNavigate();
-  const { albumName } = useParams();
+  const { searchTerm } = useParams();
+  console.log("searchTerm:", searchTerm)
   const [albums, setAlbums] = useState([]);
   const [loading, setLoading] = useState(false);
   const [dataDisplayed, setDataDisplayed] = useState(false);
