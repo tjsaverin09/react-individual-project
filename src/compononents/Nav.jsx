@@ -2,45 +2,11 @@ import React, { useState } from "react";
 import MusicLogo from "../assets/Music-Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useParams } from "react-router-dom";
 import { useSearchContext } from "../hooks/SearchProvider";
 
 const Nav = () => {
-  const params = useParams();
-  console.log(params);
-  const [searchId, setSearchId] = useState([]);
   const { searchTerm, handleChange, handleKeyDown, executeSearch } = useSearchContext();
 
-  //this function
-  function onSearch() {
-    displayAlbumData(searchId);
-  }
-
-  async function displayAlbumData(searchTerm) {
-    if (!searchTerm || searchTerm.trim() === "") {
-      console.warn("No search term provided");
-      return;
-    }
-    try {
-      const { data } = await axios.get(
-        `https://ws.audioscrobbler.com/2.0/?method=album.search&album=${encodeURIComponent(
-          searchTerm
-        )}&api_key=01a9bc49bbc9abed2dd1966234ac875e&format=json`
-      );
-      console.log("Search results:", data);
-
-    } catch (error) {
-      console.error("API call failed:", error);
-    }
-  }
-
-   // This function lets you search when you press the enter key
-  function onSearchKeyPress(key) {
-    if (key === "Enter") {
-      onSearch();
-    }
-  }
 
   return (
     <>

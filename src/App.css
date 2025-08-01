@@ -442,6 +442,14 @@ Album Spotlight
   justify-content: center;
 }
 
+.album__title {
+  margin-bottom: 40px;
+}
+
+.album__info {
+  font-size: 24px;
+}
+
 .album__img--wrapper{
   display: inline-block;
   cursor: pointer;
@@ -470,6 +478,7 @@ img.magnified {
 
 .album__bio {
   text-align: center;
+  font-size: 24px;
 }
 
 
