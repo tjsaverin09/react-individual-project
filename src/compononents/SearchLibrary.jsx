@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
+import AlbumCoverPlaceholder from "../assets/AlbumCoverPlaceholder.png"
 
 
 
@@ -63,14 +64,14 @@ const SearchLibrary = () => {
           >
             <figure className="music__img--wrapper">
               <img
-                src={album.image[2]["#text"] || 'https://lastfm.freetls.fastly.net/i/u/64s/c6f59c1e5e7240a4c0d427abd71f3dbb.jpg'}
+                src={album.image[2]["#text"] || AlbumCoverPlaceholder}
                 alt={`${album.name} by ${album.artist}`}
                 className="album__cover"
               />
             </figure>
 
             <>
-              <div className="album__title">
+              <div className="album__moniker">
                 Album: <span className="album">{album.name}</span>
               </div>
               <div className="artist__name">

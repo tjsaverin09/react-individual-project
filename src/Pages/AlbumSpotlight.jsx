@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import AlbumCoverPlaceholder from "../assets/AlbumCoverPlaceholder.png";
 
 const AlbumSpotlight = () => {
   const { artist, albumName } = useParams();
@@ -43,7 +44,7 @@ const AlbumSpotlight = () => {
 
   const handleMouseLeave = () => {
     setIsHovering(false);
-  }
+  };
 
   const toggleMagnify = () => {
     setIsMagnified(!isMagnified);
@@ -51,7 +52,6 @@ const AlbumSpotlight = () => {
 
   function spotlightPageState() {
     if (loading && hasSearched) {
-
     }
   }
 
@@ -65,9 +65,9 @@ const AlbumSpotlight = () => {
         <div className="container">
           <div className="row">
             <div className="home__top">
-            <h2 className="home__top--left">Groove on!</h2>
-            <h2 className="home__top--right">All The Hits!</h2>
-          </div>
+              <h2 className="home__top--left">Groove on!</h2>
+              <h2 className="home__top--right">All The Hits!</h2>
+            </div>
             {albumInfo && dataReady ? (
               <div className="album__details">
                 <div className="album__card">
@@ -75,38 +75,46 @@ const AlbumSpotlight = () => {
                     className="album__image--wrapper"
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    style={{ padding: '20px', border: '1px solid black',  }}
+                    style={{ padding: "20px", border: "1px solid black" }}
                     onClick={toggleMagnify}
                   >
                     <img
-                      src={albumInfo.image[3]["#text"]}
+                      src={albumInfo.image[3]["#text"] || AlbumCoverPlaceholder}
                       alt={`${albumInfo.name} by ${albumInfo.artist}`}
                       className={isMagnified ? "magnified" : "album__image"}
                     />
                     {isHovering && (
-                        <p style={{ marginTop: '10px', color: 'pink', textAlign: 'center' }}>Click album cover to expand</p>
-                      )}
+                      <p
+                        style={{
+                          marginTop: "10px",
+                          color: "pink",
+                          textAlign: "center",
+                        }}
+                      >
+                        Click album cover to expand
+                      </p>
+                    )}
                   </figure>
-                  <p className="album__bio">
-                    Album bio:
+                  <h4 className="album__bio">
+                    Album bio:{" "}
                     <span className="yellow">{`${bio}`}</span>
-                  </p>
+                  </h4>
                 </div>
                 <div className="album__info">
                   <h2 className="album__title">{albumName}</h2>
-                  <p className="album__artist">
-                    Artist:
+                  <h4 className="album__artist">
+                    Artist:{" "}
                     <span className="yellow">{`${albumInfo.artist}`}</span>
-                  </p>
-                  <p className="album__name">
-                    Album title:
+                  </h4>
+                  <h4 className="album__name">
+                    Album title:{" "}
                     <span className="yellow">{`${albumInfo.name}`}</span>
-                  </p>
+                  </h4>
                   <ol className="album__track-list">
                     Track list:
                     {tracks.length > 0 ? (
                       tracks.map((track, index) => (
-                        <li key={index}>
+                        <li className="track__name" key={index}>
                           <span className="yellow">{track.name}</span>
                         </li>
                       ))
@@ -142,6 +150,9 @@ const AlbumSpotlight = () => {
                 </div>
               </>
             )}
+            <div className="related__albums">
+              <span className="yellow" style={{ marginTop: "14px", fontFamily: "cursive" }}>this space will hold the albums related to the spotlighted albums</span>
+            </div>
           </div>
         </div>
       </div>
