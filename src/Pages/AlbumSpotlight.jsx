@@ -150,8 +150,10 @@ const AlbumSpotlight = () => {
                 </div>
               </>
             )}
-            <div className="related__albums">
+            <div className="albums__container">
+              <div className="row">
               <span className="yellow" style={{ marginTop: "14px", fontFamily: "cursive" }}>this space will hold the albums related to the spotlighted albums</span>
+              </div>
             </div>
           </div>
         </div>

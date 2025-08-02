@@ -1,16 +1,10 @@
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Switch,
-} from "react-router-dom";
-import { createContext, useContext, useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { createContext, useContext } from "react";
 import Home from "./Pages/Home";
 import AlbumInfo from "./Pages/AlbumSpotlight";
 import Footer from "./compononents/Footer";
 import Nav from "./compononents/Nav";
-import axios from "axios";
 import SearchLibrary from "./compononents/SearchLibrary";
 import { SearchProvider } from "./hooks/SearchProvider";
 
@@ -25,7 +19,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/:searchLibrary" element={<SearchLibrary />}></Route>
-            <Route path="/:searchLibray/:artist/:albumName" element={<AlbumInfo />}></Route>
+            <Route
+              path="/:searchLibray/:artist/:albumName"
+              element={<AlbumInfo />}
+            ></Route>
           </Routes>
           <Footer />
         </>

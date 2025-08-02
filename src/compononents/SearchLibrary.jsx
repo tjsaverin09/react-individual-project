@@ -81,13 +81,8 @@ const SearchLibrary = () => {
           </div>
         );
       });
-    } else if (dataDisplayed && albums.length < 0) {
-      return (
-        <>
-        oops sorry we made a booboo
-        </>
-      )
-    }else {
+    } 
+    else {
       return (
         <div className="music__loading">
           <p className="search__library--para">You have <em>phenomenal</em> taste!</p>
