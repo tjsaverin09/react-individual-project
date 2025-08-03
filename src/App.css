@@ -5,7 +5,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-  color: #243e63;
+  /* color: #243e63; */
 }
 
 .container {
@@ -183,6 +183,7 @@ HOME
   font-family: gluten;
   font-size: 24px;
   letter-spacing: 0.5px;
+  color: #243e63;
 }
 
 .home__icons {
@@ -199,15 +200,15 @@ HOME
 
 .icon:nth-child(1) {
   animation-delay: 0s;
-  color: pink;
+  color: rgba(83, 219, 83, 0.715);
 }
 .icon:nth-child(2) {
   animation-delay: 0.1s;
-  color: green;
+  color: rgba(239, 117, 176, 0.673);
 }
 .icon:nth-child(3) {
   animation-delay: 0.2s;
-  color: pink;
+  color: rgba(83, 219, 83, 0.715);
 }
 
 @keyframes wave {
@@ -235,6 +236,7 @@ HOME
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: #243e63;
 }
 
 .search__library--filter {
@@ -439,10 +441,15 @@ Album Spotlight
   color: yellow;
 }
 
+.home__top {
+  color: #243e63;
+}
+
 .album__details {
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  color: #243e63;
 }
 
 .album__title {
@@ -480,7 +487,6 @@ img.magnified {
   align-items: center;
   justify-content: start;
   width: 50%;
-  
 }
 
 .album__bio {
@@ -562,6 +568,7 @@ footer {
   margin-left: 12px;
   font-size: 20px;
   cursor: pointer;
+  color: #243e63;
 }
 
 .footer__copyright {
@@ -584,12 +591,12 @@ TABLETS
   }
   .album__info {
     margin: auto;
-    text-align: start;
+    display: flex;
   }
   .album__artist,
-  .album__name,
-  .album__track-list {
+  .album__name {
     margin-inline-end: auto;
+    text-align: start;
   }
 }
 
@@ -612,7 +619,4 @@ SMALL PHONES
     align-items: center;
     margin: auto;
   }
-  
-
-  
 }
