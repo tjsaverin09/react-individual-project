@@ -1,5 +1,5 @@
 import React from "react";
-import MusicLogo from "../assets/Music-Logo.png";
+import MusicLogo from "../assets/Fun and modern music library logo (1).png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { useSearchContext } from "../hooks/SearchProvider";
