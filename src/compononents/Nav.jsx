@@ -24,7 +24,7 @@ const Nav = () => {
             <Link to="/" className="nav__link">
               Search library
             </Link>
-            <Link to="https://badgerbadgerbadger.com/" target="_blank">
+            <Link to="mailto:tjsaverin98@live.com" target="_blank">
               <button className="nav__btn">Connect</button>
             </Link>
           </div>

@@ -561,9 +561,10 @@ footer {
 
 .footer__logo--img {
   width: 100%;
-  max-width: 175px;
-  max-height: 175px;
-  filter: invert(1);
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 100%;
+  margin-bottom: 8px;
 }
 
 .footer__link {

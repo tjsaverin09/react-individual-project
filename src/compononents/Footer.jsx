@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import MusicLogo from "../assets/Music-Logo.png";
+import MusicLogo from "../assets/Fun and modern music library logo (1).png";
 
 const Footer = () => {
     const email = "tjsaverin98@live.com";
