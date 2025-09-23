@@ -14,18 +14,16 @@ function App() {
   return (
     <Router>
       <SearchProvider>
-        <>
-          <Nav />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/:searchLibrary" element={<SearchLibrary />}></Route>
-            <Route
-              path="/:searchLibray/:artist/:albumName"
-              element={<AlbumInfo />}
-            ></Route>
-          </Routes>
-          <Footer />
-        </>
+        <Nav />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/:searchLibrary" element={<SearchLibrary />}></Route>
+          <Route
+            path="/:searchLibray/:artist/:albumName"
+            element={<AlbumInfo />}
+          ></Route>
+        </Routes>
+        <Footer />
       </SearchProvider>
     </Router>
   );
